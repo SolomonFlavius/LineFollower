@@ -11,9 +11,9 @@ int m2Speed = 0;
 
 
 // increase kp’s value and see what happens
-float kp = 30;//45  
+float kp = 38;//45  
 float ki = 0.001;//0.01
-float kd = 90;//320
+float kd = 110;//320
 
 
 
@@ -24,10 +24,10 @@ int d = 0;
 float error = 0;
 float lastError = 0;
 
-const int maxSpeed = 220;
+const int maxSpeed = 210;
 const int minSpeed = -255;
 
-const int baseSpeed = 220;
+const int baseSpeed = 210;
 
 int motorSpeed;
 
@@ -92,13 +92,12 @@ void stopFunc() {
   setMotorSpeed(0,0);
 }
 void CalculatePIDValues() {
-lastError = error;
-  error = map(qtr.readLineBlack(sensorValues), 0, 5000, -50, 50);
+  lastError = error;
+  error = map(qtr.readLineBlack(sensorValues), 0, 5000, -70, 70);
 
   p = error;
   i = i + error;
   d = error - lastError;
-  lastError = error;
 }
 
 void loop() {
