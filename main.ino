@@ -91,10 +91,9 @@ void leftFunc() {
 void stopFunc() {
   setMotorSpeed(0,0);
 }
-
 void CalculatePIDValues() {
 lastError = error;
-  float error = map(qtr.readLineBlack(sensorValues), 0, 5000, -50, 50);
+  error = map(qtr.readLineBlack(sensorValues), 0, 5000, -50, 50);
 
   p = error;
   i = i + error;
@@ -103,9 +102,9 @@ lastError = error;
 }
 
 void loop() {
-  // inefficient code, written in loop. You must create separate functions
   CalculatePIDValues();
   pidControl(kp,ki,kd);
+  CalculateMotorSpeed();
   setMotorSpeed(m1Speed, m2Speed);
 
   
